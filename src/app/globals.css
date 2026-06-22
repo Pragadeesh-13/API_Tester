@@ -1,0 +1,242 @@
+@import "tailwindcss";
+
+@theme {
+  /* Invert White and Black */
+  --color-white: #0f172a;
+  --color-black: #ffffff;
+
+  /* Invert Slate Palette for Light Theme */
+  --color-slate-50: #020617;
+  --color-slate-100: #0f172a;
+  --color-slate-200: #1e293b;
+  --color-slate-300: #334155;
+  --color-slate-400: #475569;
+  --color-slate-500: #64748b;
+  --color-slate-600: #94a3b8;
+  --color-slate-700: #cbd5e1;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #f1f5f9;
+  --color-slate-950: #f8fafc;
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.25);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.4);
+}
+
+/* ─── Global Animations ──────────────────────────────────────────────────── */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 200ms ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 200ms ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 200ms ease-out;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+body {
+  background:
+    radial-gradient(circle at 10% 20%, #FFE5BF, transparent 40%),
+    radial-gradient(circle at 90% 80%, #FFF2DB, transparent 40%),
+    linear-gradient(135deg, #FFFAF3, #FFF2DB, #FFFAF3);
+  background-size: 200% 200%, 200% 200%, 200% 200%;
+  animation: gradient-bg 20s ease infinite;
+  color: #1a1515;
+  /* Very dark warm gray/brown for text */
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%, 0% 50%, 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%, 100% 50%, 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%, 0% 50%, 0% 50%;
+  }
+}
+
+/* ─── Solid UI Utilities (No Transparency) ─────────────────────────────────────────────── */
+.glass-panel {
+  background: #FFFAF3;
+  /* Fully solid background */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 10px 40px -10px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.03);
+}
+
+.glass-input {
+  background: #ffffff;
+  /* Fully solid */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #1a1515;
+  font-weight: 500;
+}
+
+.glass-input::placeholder {
+  color: rgba(26, 21, 21, 0.4);
+}
+
+.glass-input:focus {
+  background: #ffffff;
+  border: 1px solid #F62440;
+  /* Red focus ring */
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.02),
+    0 0 0 3px rgba(246, 36, 64, 0.2);
+  /* Soft red focus aura */
+}
+
+.glass-button {
+  background: #ffffff;
+  /* Fully solid */
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #1a1515;
+  font-weight: 600;
+}
+
+.glass-button:hover {
+  background: #FFF2DB;
+  /* Solid hover state */
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.glass-button-primary {
+  background: #F62440;
+  /* Vibrant Red */
+  border: none;
+  box-shadow: 0 4px 14px 0 rgba(246, 36, 64, 0.35);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+.glass-button-primary:hover {
+  background: #de1c35;
+  /* Slightly darker red */
+  box-shadow: 0 6px 20px rgba(246, 36, 64, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ─── Selection ───────────────────────────────────────────────────────────── */
+::selection {
+  background: rgba(5, 150, 105, 0.6);
+  color: #ffffff;
+}
+
+/* ─── Focus Visible ───────────────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid rgba(246, 36, 64, 0.4);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Input Number Spinner Removal ────────────────────────────────────────── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ─── Resize Handle ──────────────────────────────────────────────────────── */
+.resize-handle {
+  position: relative;
+  cursor: col-resize;
+  user-select: none;
+}
+
+.resize-handle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 32px;
+  border-radius: 2px;
+  background: rgba(100, 116, 139, 0.3);
+  transition: background 150ms;
+}
+
+.resize-handle:hover::after {
+  background: rgba(16, 185, 129, 0.5);
+}
+
+/* ─── Responsive Split Panes ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  .pane-left,
+  .pane-right {
+    width: 100% !important;
+    min-height: 50vh;
+    border-radius: 12px;
+  }
+
+  .resize-handle {
+    display: none;
+  }
+}
